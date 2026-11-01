@@ -1,4 +1,5 @@
 const KEY = 'token'
+const BASE = import.meta.env.VITE_API_URL || ''
 
 export const getToken = () => sessionStorage.getItem(KEY)
 export const clearToken = () => sessionStorage.removeItem(KEY)
@@ -8,7 +9,7 @@ export async function request(path, { method = 'GET', body } = {}) {
   const token = getToken()
   if (token) headers.Authorization = `Bearer ${token}`
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${BASE}/api${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
@@ -26,7 +27,7 @@ export async function request(path, { method = 'GET', body } = {}) {
 }
 
 export async function login(username, password) {
-  const res = await fetch('/api/auth/login', {
+  const res = await fetch(`${BASE}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ username, password }),

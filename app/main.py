@@ -8,7 +8,7 @@ from app.routers import apis, auth, projects
 
 Base.metadata.create_all(engine)
 
-app = FastAPI(title="API Dashboard")
+app = FastAPI(title="API Dashboard", docs_url=None, redoc_url=None, openapi_url=None)
 
 app.add_middleware(
     CORSMiddleware,

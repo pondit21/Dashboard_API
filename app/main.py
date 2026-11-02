@@ -47,4 +47,4 @@ def home():
 def health():
     return {
         "status": "healthy"
-    }
+    } 
